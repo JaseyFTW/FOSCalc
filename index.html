@@ -3,18 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="/js/main.js"></script>
   <title>FOS Calculator</title>
 </head>
 <body>
   <h1>FOS Caclulator</h1>
-  <div>
-    <fieldset>
+  <fieldset>
+  <div class="input">
       <legend>Enter Dates</legend>
-      <input id ="input" type="text" name="StartDateTime" value="">
-      <input id="input" type="text" name="EndDateTime" value="">
-      <input id="output" type="text" name="OutputValue" value="">
-    </fieldset>
-  </div>
+      
+      <input type="text" id="start" name="StartDateTime" value="" placeholder="Start">
+      <input type="text" id="end" name="EndDateTime" value="" placeholder="End">
 
+  </div>
+  <div class="output">
+    
+    <input type="text" id="FOS" name="FOSDays" value="" placeholder="Output">
+    <button type="button" onclick="Calculate();">Calculate</button>
+  
+  </div>
+  </fieldset>
+
+  <!-- <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script> -->
+  <!-- <script>dayjs().format()</script> -->
 </body>
 </html>

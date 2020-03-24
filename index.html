@@ -10,23 +10,37 @@
 <body>
   <h1>FOS Caclulator</h1>
   <h2>Project by Jasey and Chad. Woo</h2>
-  <fieldset>
-  <div class="input">
-      <legend>Enter Dates</legend>
+  <form id="input">
+    <fieldset>
+      <legend>FOS Calc</legend>
+      <div class="timeoffset">
+        <fieldset>
+          <legend>Offset Time</legend>
+          <input type="time" id="offset" value="17:01">
+        </fieldset>
+      </div>
       
-      <input type="text" id="start" name="StartDateTime" value="" placeholder="Start">
-      <input type="text" id="end" name="EndDateTime" value="" placeholder="End">
+      <div class="dateselection">
+        <fieldset>
+          <legend>Date Selection</legend>
+          <input type="text" id="start" name="StartDateTime" value="" placeholder="Start">
+          <input type="text" id="end" name="EndDateTime" value="" placeholder="End">
+        </fieldset>
+      </div>
 
-  </div>
-  <div class="output">
     
-    <input type="text" id="FOS" name="FOSDays" value="" placeholder="Output">
-    <button type="button" onclick="Calculate();">Calculate</button>
-  
-  </div>
-  </fieldset>
+      <div class="output">
+        <fieldset>
+          <legend>FOS DAY!!!!</legend>
+          <input type="text" id="FOS" name="FOSDays" value="" placeholder="Output">
+          <button type="button" onclick="Calculate();">Calculate</button>
+        </fieldset>
+      </div>
+      
+    </fieldset>
+  </form>
 
-  <!-- <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script> -->
-  <!-- <script>dayjs().format()</script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.23/dayjs.min.js"></script>
+  
 </body>
 </html>

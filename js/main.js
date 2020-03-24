@@ -1,19 +1,34 @@
 function Calculate()
 {
-  const nowCurrDate = new Date("01/01/2020 12:00:00");
-  const timeOffset = new Date("07:00:00");
+  dayjs.extend(window.dayjs_plugin_customParseFormat);
 
-  const answer = new Date(nowCurrDate.valueOf() + timeOffset.valueOf());
+  const StartDateTime = dayjs(document.getElementById('start').value,"DD/MM/YYYY hh:mm");
+  const EndDateTime = dayjs(document.getElementById('end').value,"DD/MM/YYYY hh:mm");
+  const OffsetTime = dayjs(document.getElementById('offset').value,"hh:mm");
+  const CutoffTime = dayjs("23:59:59","hh:mm");
+  console.log(OffsetTime);
+  console.log(CutoffTime);
 
-  console.log(Date(answer));
+  
+  // const CuttoffTime = "01/01/01".concat
 
-  var StartDateTime = document.getElementById('start').value;
-  var EndDateTime = document.getElementById('end').value;
-  var Out = parseInt(StartDateTime) + parseInt(EndDateTime);
+  // const OffsetToMidnight = dayjs("00:00");
 
-  document.getElementById('FOS').value = Out;
+  // console.log(OffsetToMidnight);
 
-  console.log(Out);
+
+  // const StartWithOffset = StartDateTime.add
+
+  //document.getElementById('FOS').value = Out;
+  // console.log(StartDateTime.isValid());
+  // console.log(EndDateTime.isValid());
+  // console.log(StartDateTime);
+  // console.log(EndDateTime);
+
+  
+
+  // let dayone = 
+  // console.log(dayjs());
 
   // document.getElementById('FOS').value
 

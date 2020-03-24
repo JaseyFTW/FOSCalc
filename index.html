@@ -3,23 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <link rel="stylesheet" href="./css/styles.css">
   <script src="/js/main.js"></script>
   <title>FOS Calculator</title>
 </head>
 <body>
-  <h1>FOS Caclulator</h1>
+  <h1>FOS Calculator</h1>
   <h2>Project by Jasey and Chad. Woo</h2>
   <form id="input">
-    <fieldset>
-      <legend>FOS Calc</legend>
+    
+    <div id="fieldset1">
+      <fieldset>
+        <legend>FOS Calc</legend>
       <div class="timeoffset">
+    </div>
+    
         <fieldset>
           <legend>Offset Time</legend>
           <input type="time" id="offset" value="17:01">
         </fieldset>
       </div>
-      
+    
+    
+    <div id="fieldset2">
       <div class="dateselection">
         <fieldset>
           <legend>Date Selection</legend>
@@ -27,8 +33,9 @@
           <input type="text" id="end" name="EndDateTime" value="" placeholder="End">
         </fieldset>
       </div>
+    </div>
 
-    
+    <div id="fieldset3">
       <div class="output">
         <fieldset>
           <legend>FOS DAY!!!!</legend>
@@ -36,6 +43,7 @@
           <button type="button" onclick="Calculate();">Calculate</button>
         </fieldset>
       </div>
+    </div>
       
     </fieldset>
   </form>

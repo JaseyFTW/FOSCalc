@@ -1,14 +1,22 @@
 function Calculate()
 {
   dayjs.extend(window.dayjs_plugin_customParseFormat);
+  dayjs.extend(window.dayjs_plugin_relativeTime);
 
   const StartDateTime = dayjs(document.getElementById('start').value,"DD/MM/YYYY hh:mm");
   const EndDateTime = dayjs(document.getElementById('end').value,"DD/MM/YYYY hh:mm");
   const OffsetTime = dayjs(document.getElementById('offset').value,"hh:mm");
-  const CutoffTime = dayjs("23:59:59","hh:mm");
-  console.log(OffsetTime);
-  console.log(CutoffTime);
+  const CutoffTime = dayjs("23:59:59","hh:mm").add(1,'minute');
+  //console.log(OffsetTime);
+  //console.log(CutoffTime);
 
+  const OffsetMinutesToMidnight = CutoffTime.diff(OffsetTime,'minute');
+  console.log(OffsetMinutesToMidnight)
+
+  const StartDateTimeWithOffset = StartDateTime.add(OffsetMinutesToMidnight,'minute');
+  
+
+  console.log(StartDateTimeWithOffset);
   
   // const CuttoffTime = "01/01/01".concat
 

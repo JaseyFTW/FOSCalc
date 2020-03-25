@@ -1,5 +1,32 @@
+// https://medium.com/@nkhilv/how-to-use-the-javascript-fetch-api-to-get-uk-bank-holidays-step-by-step-dbb4357236ff
+// https://github.com/nkhil/UK-bank-holidays-using-fetch-API/blob/master/index.html
+// https://stackoverflow.com/questions/13869627/unable-to-access-json-property-with-dash
+const endpoint = 'https://www.gov.uk/bank-holidays.json';
+const ul = document.getElementById('holidays')
+            
+fetch(endpoint)
+  .then(blob => blob.json())
+  .then(data => handleDates(data));
+
+  function handleDates(data) {
+    let bankHolidays = data;
+    let england = bankHolidays["england-and-wales"].events;
+ 
+    const html = england.map((items)=>{
+      const [year, month, date] = items.date.split("-");
+
+      return `
+      <li>${date} / ${month} / ${year} - ${items.title}</li>
+      `;
+    
+    }).join('');
+
+  ul.innerHTML = html;
+}
+
 function Calculate()
 {
+
   dayjs.extend(window.dayjs_plugin_customParseFormat);
   dayjs.extend(window.dayjs_plugin_relativeTime);
 
@@ -11,12 +38,14 @@ function Calculate()
   //console.log(CutoffTime);
 
   const OffsetMinutesToMidnight = CutoffTime.diff(OffsetTime,'minute');
-  console.log(OffsetMinutesToMidnight)
+  console.log(OffsetMinutesToMidnight);
 
   const StartDateTimeWithOffset = StartDateTime.add(OffsetMinutesToMidnight,'minute');
+  const NewStartDate = StartDateTimeWithOffset.startOf('day');
   
+  //Work out if its a working day, if not iterate through until it does
 
-  console.log(StartDateTimeWithOffset);
+  console.log(NewStartDate);
   
   // const CuttoffTime = "01/01/01".concat
 

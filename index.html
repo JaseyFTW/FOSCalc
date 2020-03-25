@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/styles.css">
-  <script src="/js/main.js"></script>
   <title>FOS Calculator</title>
 </head>
 <body>
@@ -44,14 +43,21 @@
         </fieldset>
       </div>
     </div>
-      
     </fieldset>
+
+    <fieldset>
+      <legend>Bank Holidays</legend>
+      <ul id='holidays'></ul>
+
+    </fieldset>
+
   </form>
 
   <script src="https://unpkg.com/dayjs@1.8.23/dayjs.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.23/plugin/utc.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.23/plugin/customParseFormat.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.23/plugin/relativeTime.js"></script>
+  <script src="/js/main.js"></script>
     
 </body>
 </html>

@@ -9,38 +9,32 @@
 <body>
   <h1>FOS Calculator</h1>
   <marquee><h2>Project by Jasey and Chad. Woo</h2></marquee>
-  
-  <title>FOS Calculator</title>
-</head>
-<body>
-  <h1>FOS Caclulator</h1>
-  <h2>Project by Jasey and Chad. Woo</h2>
-  <form id="input">
-
+    
+<form id="input">
   <div id="fieldsetmaster">
     <fieldset>
       <legend>FOS Calc</legend>
-        <div id="fieldset1">        
-          <div class="timeoffset">
-            <fieldset>
-              <legend>Offset Time</legend>
-              <input type="time" id="offset" value="17:01">
-            </fieldset>
-          </div>git 
-        </div>
+      <div id="fieldset1">        
+        <div class="timeoffset">
+          <fieldset>
+            <legend>Offset Time</legend>
+            <input type="time" id="offset" value="17:01">
+          </fieldset>
+        </div> 
+      </div>
 
 <!--start date and end date-->
-     <div id="fieldset2"> 
+    <div id="fieldset2"> 
       <div class="dateselection">
         <div class="startenddate">
-        <fieldset>
-          <legend>Date Selection</legend>
-          <input type="text" id="start" name="StartDateTime" value="" placeholder="Start" required>
-          <input type="text" id="end" name="EndDateTime" value="" placeholder="End">
-      </fieldset>
+          <fieldset>
+            <legend>Date Selection</legend>
+            <input type="text" id="start" name="StartDateTime" value="" placeholder="Start" required>
+            <input type="text" id="end" name="EndDateTime" value="" placeholder="End">
+          </fieldset>
+        </div>
       </div>
     </div>
-  </div>
 
 <!--result of above = FOS DAY!!!-->
     <div id="fieldset3">
@@ -52,14 +46,14 @@
         </fieldset>
       </div>   
     </div>
-    </fieldset>
+  </fieldset>
 
-    <fieldset>
-      <legend>Bank Holidays</legend>
-      <ul id='holidays'></ul>
-    </fieldset>
+  <fieldset>
+    <legend>Bank Holidays</legend>
+    <ul id='holidays'></ul>
+  </fieldset>
 
-  </form>
+</form>
 
   <script src="https://unpkg.com/dayjs@1.8.23/dayjs.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.23/plugin/utc.js"></script>

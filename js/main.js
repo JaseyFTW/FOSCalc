@@ -16,7 +16,7 @@ function handleDates(data) {
   let england = bankHolidays["england-and-wales"].events;
 
   console.log (england);
-  console.log ("last again");
+  //console.log ("last again");
 
   for(let i = 0; i < england.length; i++){
     JustDates.push(dayjs(england[i].date,"YYYY-MM-DD"));

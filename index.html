@@ -9,31 +9,43 @@
 <body>
   <h1>FOS Calculator</h1>
   <marquee><h2>Project by Jasey and Chad. Woo</h2></marquee>
+  <link rel="stylesheet" href="./css/styles.css">
+
+  
+  <script src="/js/main.js"></script>
+  <title>FOS Calculator</title>
+</head>
+<body>
+  <h1>FOS Caclulator</h1>
+  <h2>Project by Jasey and Chad. Woo</h2>
   <form id="input">
-    
-    <div id="fieldset1">
-      <fieldset>
-        <legend>FOS Calc</legend>
-      <div class="timeoffset">
-    </div>
-    
-        <fieldset>
-          <legend>Offset Time</legend>
-          <input type="time" id="offset" value="17:01">
-        </fieldset>
-      </div>
-    
-    
-    <div id="fieldset2">
+
+  <div id="fieldsetmaster">
+    <fieldset>
+      <legend>FOS Calc</legend>
+        <div id="fieldset1">        
+          <div class="timeoffset">
+            <fieldset>
+              <legend>Offset Time</legend>
+              <input type="time" id="offset" value="17:01">
+            </fieldset>
+          </div>git 
+        </div>
+
+<!--start date and end date-->
+     <div id="fieldset2"> 
       <div class="dateselection">
+        <div class="startenddate">
         <fieldset>
           <legend>Date Selection</legend>
-          <input type="text" id="start" name="StartDateTime" value="" placeholder="Start">
+          <input type="text" id="start" name="StartDateTime" value="" placeholder="Start" required>
           <input type="text" id="end" name="EndDateTime" value="" placeholder="End">
-        </fieldset>
+      </fieldset>
       </div>
     </div>
+  </div>
 
+<!--result of above = FOS DAY!!!-->
     <div id="fieldset3">
       <div class="output">
         <fieldset>
@@ -41,7 +53,7 @@
           <input type="text" id="FOS" name="FOSDays" value="" placeholder="Output">
           <button type="button" onclick="Calculate();">Click Me!</button>
         </fieldset>
-      </div>
+      </div>   
     </div>
     </fieldset>
 

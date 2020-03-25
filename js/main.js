@@ -21,7 +21,6 @@ function handleDates(data) {
     JustDates.push(dayjs(england[i].date,"YYYY-MM-DD"));
   }
   console.log(JustDates);
-  console.log("woo");
 
   const html = england.map((items)=>{
     const [year, month, date] = items.date.split("-");

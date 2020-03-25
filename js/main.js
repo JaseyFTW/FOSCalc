@@ -8,7 +8,6 @@ const endpoint = 'https://www.gov.uk/bank-holidays.json';
 const ul = document.getElementById('holidays')
             
 fetch(endpoint).then((resp) => resp.json()).then((json) => handleDates(json));
-
 let JustDates = [];
 
 function handleDates(data) {
@@ -18,7 +17,7 @@ function handleDates(data) {
   console.log (england);
   //console.log ("last again");
 
-  for(let i = england.length-1; i >= 0; i--){
+  for(let i = 0; i < england.length; i++){
     JustDates.push(dayjs(england[i].date,"YYYY-MM-DD"));
   }
   console.log(JustDates);
@@ -26,13 +25,12 @@ function handleDates(data) {
   const html = england.map((items)=>{
     const [year, month, date] = items.date.split("-");
 
-    return `
-    <li>${date}/${month}/${year} - ${items.title}</li>
-    `;
+    return `<li>${date}/${month}/${year} - ${items.title}</li>`;
   
-  }).join('');
+  }).reverse().join('');
 
   ul.innerHTML = html;
+
 }
 
 function Calculate()
@@ -48,11 +46,18 @@ function Calculate()
   console.log(OffsetMinutesToMidnight);
 
   const StartDateTimeWithOffset = StartDateTime.add(OffsetMinutesToMidnight,'minute');
-  const NewStartDate = StartDateTimeWithOffset.startOf('day');
-  
+  let NewStartDate = StartDateTimeWithOffset.startOf('day');
+
+  while (NewStartDate.get('day') == 0 || NewStartDate.get('day') == 6 || JustDates.includes(NewStartDate)){
+
+    NewStartDate = NewStartDate.add(1,'day');
+    console.log(NewStartDate);
+  }
+
+  document.getElementById('FOS').value = NewStartDate;
+
   //Work out if its a working day, if not iterate through until it does
 
-  console.log(NewStartDate);
   
   // const CuttoffTime = "01/01/01".concat
 

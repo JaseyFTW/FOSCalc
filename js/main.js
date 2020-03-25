@@ -18,7 +18,7 @@ function handleDates(data) {
   console.log (england);
   //console.log ("last again");
 
-  for(let i = 0; i < england.length; i++){
+  for(let i = england.length-1; i >= 0; i--){
     JustDates.push(dayjs(england[i].date,"YYYY-MM-DD"));
   }
   console.log(JustDates);

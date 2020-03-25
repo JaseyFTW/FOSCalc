@@ -1,35 +1,41 @@
+dayjs.extend(window.dayjs_plugin_customParseFormat);
+dayjs.extend(window.dayjs_plugin_relativeTime);
+
 // https://medium.com/@nkhilv/how-to-use-the-javascript-fetch-api-to-get-uk-bank-holidays-step-by-step-dbb4357236ff
 // https://github.com/nkhil/UK-bank-holidays-using-fetch-API/blob/master/index.html
 // https://stackoverflow.com/questions/13869627/unable-to-access-json-property-with-dash
 const endpoint = 'https://www.gov.uk/bank-holidays.json';
 const ul = document.getElementById('holidays')
             
-fetch(endpoint)
-  .then(blob => blob.json())
-  .then(data => handleDates(data));
+fetch(endpoint).then((resp) => resp.json()).then((json) => handleDates(json));
 
-  function handleDates(data) {
-    let bankHolidays = data;
-    let england = bankHolidays["england-and-wales"].events;
- 
-    const html = england.map((items)=>{
-      const [year, month, date] = items.date.split("-");
+let JustDates = [];
 
-      return `
-      <li>${date} / ${month} / ${year} - ${items.title}</li>
-      `;
-    
-    }).join('');
+function handleDates(data) {
+  let bankHolidays = data;
+  let england = bankHolidays["england-and-wales"].events;
+
+  console.log (england)
+
+  for(let i = 0; i < england.length; i++){
+    JustDates.push(dayjs(england[i].date,"YYYY-MM-DD"));
+  }
+  console.log(JustDates);
+
+  const html = england.map((items)=>{
+    const [year, month, date] = items.date.split("-");
+
+    return `
+    <li>${date}/${month}/${year} - ${items.title}</li>
+    `;
+  
+  }).join('');
 
   ul.innerHTML = html;
 }
 
 function Calculate()
 {
-
-  dayjs.extend(window.dayjs_plugin_customParseFormat);
-  dayjs.extend(window.dayjs_plugin_relativeTime);
-
   const StartDateTime = dayjs(document.getElementById('start').value,"DD/MM/YYYY hh:mm");
   const EndDateTime = dayjs(document.getElementById('end').value,"DD/MM/YYYY hh:mm");
   const OffsetTime = dayjs(document.getElementById('offset').value,"hh:mm");

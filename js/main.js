@@ -14,11 +14,11 @@ function handleDates(data) {
   let bankHolidays = data;
   let england = bankHolidays["england-and-wales"].events;
 
-  console.log (england);
+  //console.log (england);
   //console.log ("last again");
 
   for(let i = 0; i < england.length; i++){
-    JustDates.push(dayjs(england[i].date,"YYYY-MM-DD"));
+    JustDates.push(dayjs(england[i].date,"YYYY-MM-DD").format("DD/MM/YYYY"));
   }
   console.log(JustDates);
 
@@ -37,24 +37,54 @@ function Calculate()
 {
   const StartDateTime = dayjs(document.getElementById('start').value,"DD/MM/YYYY hh:mm");
   const EndDateTime = dayjs(document.getElementById('end').value,"DD/MM/YYYY hh:mm");
-  const OffsetTime = dayjs(document.getElementById('offset').value,"hh:mm");
-  const CutoffTime = dayjs("23:59:59","hh:mm").add(1,'minute');
-  //console.log(OffsetTime);
-  //console.log(CutoffTime);
+  const OpenCutoffTime = dayjs(document.getElementById('offset').value,"hh:mm");
+  const CloseCutoffTime = dayjs(document.getElementById('offset').value,"hh:mm").subtract(1,'minute');
+  //const CutoffTime = dayjs("23:59:59","hh:mm").add(1,'minute');
+  
+  let NewStartDate = Day1(StartDateTime, JustDates, OpenCutoffTime, true);
+  let NewCloseDate = Day1(EndDateTime, JustDates, CloseCutoffTime, true);
+  
+  console.log(NewStartDate);
+  console.log(NewCloseDate);
 
-  const OffsetMinutesToMidnight = CutoffTime.diff(OffsetTime,'minute');
-  console.log(OffsetMinutesToMidnight);
+  let FOSDays = Networkdays(NewStartDate, NewCloseDate, JustDates, 1);
+  console.log(FOSDays);
+  
+  document.getElementById('FOS').value = FOSDays;
 
-  const StartDateTimeWithOffset = StartDateTime.add(OffsetMinutesToMidnight,'minute');
-  let NewStartDate = StartDateTimeWithOffset.startOf('day');
+}
 
-  while (NewStartDate.get('day') == 0 || NewStartDate.get('day') == 6 || JustDates.includes(NewStartDate)){
+function Networkdays(DateFrom,DateTo,BankHolidays,StartCount){
 
-    NewStartDate = NewStartDate.add(1,'day');
-    console.log(NewStartDate);
+  counter = StartCount;
+
+  while (DateFrom.format("DD/MM/YYYY") !== DateTo.format("DD/MM/YYYY")){
+    if (DateFrom.get('day') !== 0 && DateFrom.get('day') !== 6){ //&& !JustDates.includes(DateFrom.format("DD/MM/YYYY"))){
+      counter++;
+    }
+    DateFrom = DateFrom.add(1,'day');
+    console.log(DateFrom.format("DD/MM/YYYY"));
   }
 
-  document.getElementById('FOS').value = NewStartDate;
+  return counter;
+
+}
+
+function Day1(DateTime,BankHolidays,CutoffTime,ExcludeWeekends){
+
+  const Midnight = dayjs("23:59:59","hh:mm").add(1,'minute');
+  const OffsetMinutesToMidnight = Midnight.diff(CutoffTime,'minute');
+  const StartDateTimeWithOffset = DateTime.add(OffsetMinutesToMidnight,'minute');
+  let NewStartDate = StartDateTimeWithOffset.startOf('day');
+  
+  while (NewStartDate.get('day') == 0 || NewStartDate.get('day') == 6 || JustDates.includes(NewStartDate.format("DD/MM/YYYY"))){
+    NewStartDate = NewStartDate.add(1,'day');
+  }
+
+  console.log(NewStartDate.format("DD/MM/YYYY"))
+  return NewStartDate;
+
+}
 
   //Work out if its a working day, if not iterate through until it does
 
@@ -91,4 +121,8 @@ function Calculate()
   // const str     = `From ${fromStr} to ${toStr}`
   // console.log(str) // > From 2011-10-11 at 13:00 to 2012-04-11 at 13:00
 
-}
+
+//}
+
+
+

@@ -59,7 +59,7 @@ function Networkdays(DateFrom,DateTo,BankHolidays,StartCount){
   counter = StartCount;
 
   while (DateFrom.format("DD/MM/YYYY") !== DateTo.format("DD/MM/YYYY")){
-    if (DateFrom.get('day') !== 0 && DateFrom.get('day') !== 6){ //&& !JustDates.includes(DateFrom.format("DD/MM/YYYY"))){
+    if (DateFrom.get('day') !== 0 && DateFrom.get('day') !== 6 && !JustDates.includes(DateFrom.format("DD/MM/YYYY"))){
       counter++;
     }
     DateFrom = DateFrom.add(1,'day');

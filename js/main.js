@@ -23,9 +23,10 @@ function handleDates(data) {
   console.log(JustDates);
 
   const html = england.map((items)=>{
+    
     const [year, month, date] = items.date.split("-");
 
-    return `<li>${date}/${month}/${year} - ${items.title}</li>`;
+    return `<li>${date}/${month}/${year} - ${dayjs(new Date(year, month, date)).format("ddd")}, ${items.title}</li>`;
   
   }).reverse().join('');
 
@@ -39,18 +40,45 @@ function Calculate()
   const EndDateTime = dayjs(document.getElementById('end').value,"DD/MM/YYYY hh:mm");
   const OpenCutoffTime = dayjs(document.getElementById('offset').value,"hh:mm");
   const CloseCutoffTime = dayjs(document.getElementById('offset').value,"hh:mm").subtract(1,'minute');
-  //const CutoffTime = dayjs("23:59:59","hh:mm").add(1,'minute');
-  
-  let NewStartDate = Day1(StartDateTime, JustDates, OpenCutoffTime, true);
-  let NewCloseDate = Day1(EndDateTime, JustDates, CloseCutoffTime, true);
-  
-  console.log(NewStartDate);
-  console.log(NewCloseDate);
 
-  let FOSDays = Networkdays(NewStartDate, NewCloseDate, JustDates, 1);
-  console.log(FOSDays);
+  let NewStartDate
+  let NewCloseDate
+
+  if(StartDateTime.isValid()){
+    NewStartDate = Day1(StartDateTime, JustDates, OpenCutoffTime, true);
+    document.getElementById('startday1').value = NewStartDate.format("ddd, DD/MM/YYYY");;
+  }
+
+  if(EndDateTime.isValid()){
+    NewCloseDate = Day1(EndDateTime, JustDates, CloseCutoffTime, true);
+    document.getElementById('endday1').value = NewCloseDate.format("ddd, DD/MM/YYYY");
+  }
+
   
-  document.getElementById('FOS').value = FOSDays;
+  if (StartDateTime.isValid() && EndDateTime.isValid()){
+    
+    if (StartDateTime.isBefore(EndDateTime)){
+      
+      //const CutoffTime = dayjs("23:59:59","hh:mm").add(1,'minute');
+      
+      
+      
+      console.log(NewStartDate);
+      console.log(NewCloseDate);
+
+      let FOSDays = Networkdays(NewStartDate, NewCloseDate, JustDates, 1);
+      console.log(FOSDays);
+      
+      document.getElementById('FOS').value = FOSDays;
+
+
+    } else{
+      document.getElementById('FOS').value = "End can not be before start";
+    }
+
+  } else{
+    document.getElementById('FOS').value = "";
+  }
 
 }
 
